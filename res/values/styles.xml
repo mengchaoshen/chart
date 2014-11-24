@@ -32,13 +32,11 @@
     <style name="button">
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/submit_button_style</item>
-        <item name="android:textColor">@color/button_text_color</item>
     </style>
     
     <style name="backButton">
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/back_button</item>
-        <item name="android:textColor">@color/button_text_color</item>
     </style>
     
     <style name="dateButton">
@@ -50,7 +48,6 @@
     <style name="choiceButton">
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/choice_button</item>
-        <item name="android:textColor">@color/button_get_code</item>
     </style>
     
    <style name="MyDialog" parent="@android:style/Theme.Dialog">
@@ -79,7 +76,6 @@
    </style>
    
    <style name="reasonCheckBox">
-       <item name="android:background">@drawable/check_box_reason</item>
        <item name="android:button">@null</item>
    </style>
    
@@ -89,7 +85,6 @@
    
    <style name="getCodeButton">
        <item name="android:background">@drawable/get_code_button</item>
-       <item name="android:textColor">@color/button_get_code</item>
    </style>
 
 </resources>
