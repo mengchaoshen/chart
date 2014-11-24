@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 从屏幕右边偏离2%位置开始进入，到达终点后有超出在返回终点的动态效果 -->
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <translate
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromXDelta="100%p"
+        android:fromYDelta="0%p"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:startOffset="0"
+        android:toXDelta="0%p"
+        android:toYDelta="0%p" />
+
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0" />
+
+</set>
