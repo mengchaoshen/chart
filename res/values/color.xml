@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="txt_not_choiced">#3C7294</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#999999</color>
+    <color name="black">#000000</color>
+    <color name="login_selected_background">#5DBAE5</color>
+    <color name="light_blue">#E3F0F8</color>
+    <color name="light_yellow">#FFFF80</color>
+    <color name="blue">#3C7294</color>
+    <color name="background">#EEF3F6</color>
+    <color name="ligit_grey">#D8D8D8</color>
+    <color name="red_warn">#CC0A0C</color>
+    <color name="transparent_black">#33000000</color>
+    
+    <!-- zxing -->
+    <color name="transparent">#00000000</color>
+	<color name="viewfinder_mask">#b0000000</color>
+	<color name="corner_four">#009ad6</color>
+	<color name="qinghe">#1a2933</color>
+    
+    
+</resources>
