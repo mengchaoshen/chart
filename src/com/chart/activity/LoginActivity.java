@@ -69,9 +69,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				|| "".equals(edtTxt_password.getText().toString())) {
 			txt_warn.setVisibility(View.VISIBLE);
 			txt_warn.setText(getResources().getString(R.string._warn1));
+			return;
 		} else {
 			txt_warn.setVisibility(View.GONE);
 		}
+		progressBarDialog = new ProgressBarDialog(LoginActivity.this);
+		progressBarDialog.show();
+		
 		RequestParams loginParams = new RequestParams();
 		loginParams.addQueryStringParameter("studyId", edtTxt_studyId.getText()
 				.toString());
@@ -88,6 +92,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 				case HttpState.SUCCESS:
 					progressBarDialog.dismiss();
 					if (baseApp.user.isCorrect()) {
+						Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
 						//TODO
 					} else {
 						txt_warn.setVisibility(View.VISIBLE);

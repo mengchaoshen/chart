@@ -111,6 +111,7 @@ public final class R {
         public static final int action_settings=0x7f070001;
         public static final int app_name=0x7f070000;
         public static final int hello_world=0x7f070002;
+        public static final int login_success=0x7f07000d;
         public static final int study_num=0x7f070003;
         public static final int warn_network_error=0x7f07000b;
         public static final int warn_network_not_available=0x7f07000c;

@@ -14,5 +14,6 @@
     <string name="_cancel">取消</string>
     <string name="warn_network_error">加载失败，请检查网络或重试</string>
     <string name="warn_network_not_available">网络没有连接，请连接网络后重试</string>
+    <string name="login_success">登录成功</string>
 
 </resources>

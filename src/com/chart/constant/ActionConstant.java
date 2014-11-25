@@ -2,10 +2,9 @@ package com.chart.constant;
 
 public class ActionConstant {
 
-	public final static String COMM_URL = "http://172.16.19.70:8080/nsqd-ww-web/ws/mws";//服务器
-//	public final static String COMM_URL = "http://172.16.19.70:8090/photo";//mock接口
+	public final static String COMM_URL = "http://172.16.19.70:8080/ChartServer";//服务器
 
-	public final static String LOGIN = COMM_URL + "/login";
+	public final static String LOGIN = COMM_URL + "/loginServlet";
 
 	public final static String PAYMENT_UNIT = COMM_URL + "/paymentUnit.txt";
 	
