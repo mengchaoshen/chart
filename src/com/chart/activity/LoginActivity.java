@@ -1,5 +1,6 @@
 package com.chart.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -93,7 +94,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 					progressBarDialog.dismiss();
 					if (baseApp.user.isCorrect()) {
 						Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-						//TODO
+						//TODO 登录成功
+						startActivity(new Intent(LoginActivity.this, MainFunctionActivity.class));
+						finish();
+						overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 					} else {
 						txt_warn.setVisibility(View.VISIBLE);
 						txt_warn.setText(getResources()
