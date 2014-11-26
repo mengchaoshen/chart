@@ -62,6 +62,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 
 	}
 
+	/**
+	 * 设置端口参数等
+	 */
+	private void setParam(){
+		
+	}
+	
 	@Override
 	public void onClick(View arg0) {
 		if (null == edtTxt_studyId.getText().toString()
@@ -95,6 +102,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 					if (baseApp.user.isCorrect()) {
 						Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
 						//TODO 登录成功
+						setParam();
 						startActivity(new Intent(LoginActivity.this, MainFunctionActivity.class));
 						finish();
 						overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);

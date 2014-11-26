@@ -16,4 +16,13 @@ public class GlobConstant {
 	public final static String DATABASE_NAME = "chart.db";
 	
 	public final static String DATABASE_DIRECTORY = "database";
+	
+	/**
+	 * 聊天类型，群聊，个人
+	 */
+	public final static String GROPU = "0";
+	
+	public final static String PERSONAL = "1";
+	
+	
 }

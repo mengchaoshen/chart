@@ -26,9 +26,27 @@ public class ChartItem implements Serializable{
 	@Column(column="isOther")
 	private boolean isOther;
 
+	@Column(column="chartType")
+	private String chartType;
+	
 	@Column(column="chartObject")
 	private String chartObject;
 	
+	public ChartItem() {
+		super();
+	}
+
+	public ChartItem(String studyId, String head, String chartText,
+			boolean isOther, String chartType, String chartObject) {
+		super();
+		this.studyId = studyId;
+		this.head = head;
+		this.chartText = chartText;
+		this.isOther = isOther;
+		this.chartType = chartType;
+		this.chartObject = chartObject;
+	}
+
 	public String getStudyId() {
 		return studyId;
 	}
@@ -75,6 +93,14 @@ public class ChartItem implements Serializable{
 
 	public void setChartObject(String chartObject) {
 		this.chartObject = chartObject;
+	}
+
+	public String getChartType() {
+		return chartType;
+	}
+
+	public void setChartType(String chartType) {
+		this.chartType = chartType;
 	}
 	
 }

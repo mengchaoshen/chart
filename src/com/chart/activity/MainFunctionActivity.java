@@ -21,7 +21,6 @@ import com.chart.constant.MainFunctionConstant;
 import com.chart.interfaces.OnDialogClickListener;
 import com.chart.model.MainFunction;
 import com.chart.widget.IsSureDialog;
-import com.chart.widget.ProgressBarDialog;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -41,8 +40,6 @@ public class MainFunctionActivity extends BaseActivity implements
 	private IsSureDialog isSureDialog;
 
 	private DialogType dialogType;
-
-	private ProgressBarDialog progressBarDialog;
 	
 	private TextView txt_userName;
 
@@ -97,6 +94,8 @@ public class MainFunctionActivity extends BaseActivity implements
 			long id) {
 		switch (((MainFunction) parent.getItemAtPosition(position)).getId()) {
 		case 1:// 群聊
+			startActivity(new Intent(MainFunctionActivity.this, ChartActivity.class));
+			finish();
 			break;
 		case 2:// 纳税清单申请
 			break;

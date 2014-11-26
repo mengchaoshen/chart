@@ -6,16 +6,7 @@ public class ActionConstant {
 
 	public final static String LOGIN = COMM_URL + "/loginServlet";
 
-	public final static String PAYMENT_UNIT = COMM_URL + "/paymentUnit.txt";
+	public final static String SEND_MESSAGE = COMM_URL + "/sendServlet";
 	
-	public final static String TAX_DETAIL = COMM_URL + "/taxDetail.txt";
-	
-	public final static String APPLY_REASON = COMM_URL + "/applyReasn.txt";
-	
-	public final static String DOCUMENT_TYPE = COMM_URL + "/documentType";
-	
-	public final static String DESTROY_REASON = COMM_URL + "/destroyReason.txt";
-	
-	public final static String MY_TAX_LIST = COMM_URL + "/myTaxList.txt";
 
 }

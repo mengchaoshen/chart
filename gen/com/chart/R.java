@@ -125,13 +125,13 @@ public final class R {
         public static final int chart=0x7f050000;
     }
     public static final class string {
-        public static final int _back=0x7f08000e;
+        public static final int _back=0x7f080010;
         public static final int _cancel=0x7f08000a;
-        public static final int _face=0x7f080012;
+        public static final int _face=0x7f080014;
         public static final int _loading=0x7f080008;
-        public static final int _main=0x7f08000f;
+        public static final int _main=0x7f080011;
         public static final int _password=0x7f080004;
-        public static final int _send=0x7f080011;
+        public static final int _send=0x7f080013;
         public static final int _submit=0x7f080005;
         public static final int _sure=0x7f080009;
         public static final int _warn1=0x7f080006;
@@ -139,8 +139,10 @@ public final class R {
         public static final int action_settings=0x7f080001;
         public static final int app_name=0x7f080000;
         public static final int hello_world=0x7f080002;
-        public static final int image=0x7f080010;
+        public static final int image=0x7f080012;
         public static final int login_success=0x7f08000d;
+        public static final int send_fail=0x7f08000f;
+        public static final int send_success=0x7f08000e;
         public static final int study_num=0x7f080003;
         public static final int warn_network_error=0x7f08000b;
         public static final int warn_network_not_available=0x7f08000c;

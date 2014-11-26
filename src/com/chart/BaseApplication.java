@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import android.app.Application;
 
+import com.chart.model.BaseJson;
 import com.chart.model.User;
 
 public class BaseApplication extends Application implements Serializable{
@@ -12,4 +13,5 @@ public class BaseApplication extends Application implements Serializable{
 
 	public User user = new User();
 	
+	public BaseJson baseJson = new BaseJson();
 }
