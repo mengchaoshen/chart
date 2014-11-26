@@ -1,8 +1,12 @@
 package com.chart.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,6 +32,7 @@ import com.chart.widget.ProgressBarDialog;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.util.LogUtils;
 
 public class ChartActivity extends BaseActivity implements OnClickListener,
 		Runnable {
@@ -56,7 +61,9 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 				chartAdapter = new ChartAdapter(ChartActivity.this,
 						chartItemList);
 				list_chart.setAdapter(chartAdapter);
-				progressBarDialog.dismiss();
+				if(progressBarDialog.isShowing()){
+					progressBarDialog.dismiss();
+				}
 			}
 			return false;
 		}
@@ -68,8 +75,24 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		setContentView(R.layout.activity_chart);
 		findViewById();
 		init();
+		initReceiver();
 	}
 
+	private void initReceiver(){
+		registerReceiver(new MyReceiver(), 
+		         new IntentFilter(GlobConstant.UPDATE_RECEIVER));
+	}
+	
+	class MyReceiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			LogUtils.e("收到了广播");
+			new Thread(ChartActivity.this).start();
+		}
+		
+	}
+	
 	@Override
 	public void findViewById() {
 		btn_send = (Button) findViewById(R.id.btn_send);
@@ -120,7 +143,9 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 	 * 发消息
 	 */
 	private void sendMessage(String json) {
+		LogUtils.e("发出的：" +json);
 		RequestParams sendParams = new RequestParams();
+		sendParams.setContentType("UTF-8");
 		sendParams.addQueryStringParameter("json", json);
 
 		SendMessageAction sendMessageAction = new SendMessageAction(
@@ -155,7 +180,7 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 				}
 			}
 		});
-
+		sendMessageAction.sendPost();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -167,7 +192,7 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 			chartItemList = (List<ChartItem>) BaseDao.query(
 					ChartActivity.this,
 					Selector.from(ChartItem.class).where("chartObject", "=",
-							"group1"));
+							"group1").and("chartType", "=", "0"));
 		} catch (DbException e) {
 			e.printStackTrace();
 		}

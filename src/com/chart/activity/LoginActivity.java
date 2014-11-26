@@ -1,7 +1,10 @@
 package com.chart.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,9 +16,12 @@ import com.chart.BaseActivity;
 import com.chart.R;
 import com.chart.action.LoginAction;
 import com.chart.constant.ActionConstant;
+import com.chart.constant.GlobConstant;
 import com.chart.constant.HttpState;
+import com.chart.constant.Params;
 import com.chart.interfaces.HttpCallback;
 import com.chart.interfaces.OnDialogClickListener;
+import com.chart.service.OnlineService;
 import com.chart.widget.IsSureDialog;
 import com.chart.widget.ProgressBarDialog;
 import com.lidroid.xutils.http.RequestParams;
@@ -66,7 +72,25 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 * 设置端口参数等
 	 */
 	private void setParam(){
-		
+		SharedPreferences account = this.getSharedPreferences(Params.DEFAULT_PRE_NAME,Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = account.edit();
+		Log.e("SERVER_IP", GlobConstant.SERVER_IP);
+		Log.e("SERVER_PORT", GlobConstant.SERVER_PORT);
+		Log.e("PUSH_PORT", GlobConstant.PUSH_PORT);
+		Log.e("getStudyId", baseApp.user.getStudyId());
+		editor.putString(Params.SERVER_IP, GlobConstant.SERVER_IP);
+		editor.putString(Params.SERVER_PORT, GlobConstant.SERVER_PORT);
+		editor.putString(Params.PUSH_PORT, GlobConstant.PUSH_PORT);
+		editor.putString(Params.USER_NAME, baseApp.user.getStudyId());
+		editor.putString(Params.SENT_PKGS, "0");
+		editor.putString(Params.RECEIVE_PKGS, "0");
+		editor.commit();
+	}
+	
+	private void startService(){
+		Intent startSrv = new Intent(this, OnlineService.class);
+		startSrv.putExtra("CMD", "RESET");
+		this.startService(startSrv);
 	}
 	
 	@Override
@@ -103,6 +127,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 						Toast.makeText(LoginActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
 						//TODO 登录成功
 						setParam();
+						startService();
 						startActivity(new Intent(LoginActivity.this, MainFunctionActivity.class));
 						finish();
 						overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);

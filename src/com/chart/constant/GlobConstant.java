@@ -24,5 +24,15 @@ public class GlobConstant {
 	
 	public final static String PERSONAL = "1";
 	
+	public final static String UPDATE_RECEIVER = "com.chart.ChartActivity";
+	
+	
+	public final static String SERVER_IP = "192.168.0.106";
+	
+	public final static String SERVER_PORT = "9966";
+	
+	public final static String PUSH_PORT = "9999";
+	
+	
 	
 }

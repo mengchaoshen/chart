@@ -71,6 +71,7 @@ public class ChartAdapter extends BaseAdapter {
 			holder.btn_myHead.setText(chartItemList.get(position).getHead());
 			holder.btn_otherHead.setVisibility(View.GONE);
 		}
+		holder.txt_chartText.setText(chartItemList.get(position).getChartText());
 
 		return convertView;
 	}

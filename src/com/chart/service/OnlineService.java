@@ -18,12 +18,17 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.chart.R;
 import com.chart.activity.ChartActivity;
+import com.chart.constant.GlobConstant;
 import com.chart.constant.Params;
+import com.chart.dao.BaseDao;
+import com.chart.model.ChartItem;
 import com.chart.receiver.TickAlarmReceiver;
 import com.chart.util.DateTimeUtil;
 import com.chart.util.Util;
+import com.lidroid.xutils.util.LogUtils;
 
 public class OnlineService extends Service {
 	
@@ -71,9 +76,14 @@ public class OnlineService extends Service {
 				String str = null;
 				try{
 					str = new String(message.getData(),5,message.getContentLength(), "UTF-8");
+					ChartItem chartItem = JSON.parseObject(str, ChartItem.class);
+					BaseDao.insert(getBaseContext(), chartItem);
 				}catch(Exception e){
-					str = Util.convert(message.getData(),5,message.getContentLength());
+					LogUtils.e("eeeeeeeee");
 				}
+				LogUtils.e(str);
+				Intent update = new Intent(GlobConstant.UPDATE_RECEIVER);
+				sendBroadcast(update);
 				notifyUser(32,"DDPush自定义推送信息",""+str,"收到自定义推送信息");
 			}
 			setPkgsInfo();

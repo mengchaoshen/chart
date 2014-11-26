@@ -23,8 +23,8 @@ public class ChartItem implements Serializable{
 	@Column(column="chartText")
 	private String chartText;
 
-	@Column(column="isOther")
-	private boolean isOther;
+	@Column(column="other")
+	private boolean other;
 
 	@Column(column="chartType")
 	private String chartType;
@@ -36,16 +36,18 @@ public class ChartItem implements Serializable{
 		super();
 	}
 
+
 	public ChartItem(String studyId, String head, String chartText,
-			boolean isOther, String chartType, String chartObject) {
+			boolean other, String chartType, String chartObject) {
 		super();
 		this.studyId = studyId;
 		this.head = head;
 		this.chartText = chartText;
-		this.isOther = isOther;
+		this.other = other;
 		this.chartType = chartType;
 		this.chartObject = chartObject;
 	}
+
 
 	public String getStudyId() {
 		return studyId;
@@ -71,13 +73,16 @@ public class ChartItem implements Serializable{
 		this.chartText = chartText;
 	}
 
+
 	public boolean isOther() {
-		return isOther;
+		return other;
 	}
 
-	public void setOther(boolean isOther) {
-		this.isOther = isOther;
+
+	public void setOther(boolean other) {
+		this.other = other;
 	}
+
 
 	public int getId() {
 		return id;
