@@ -27,7 +27,9 @@ public class GlobConstant {
 	public final static String UPDATE_RECEIVER = "com.chart.ChartActivity";
 	
 	
-	public final static String SERVER_IP = "192.168.0.106";
+//	public final static String SERVER_IP = "192.168.0.106";
+	
+	public final static String SERVER_IP = "172.16.19.70";
 	
 	public final static String SERVER_PORT = "9966";
 	

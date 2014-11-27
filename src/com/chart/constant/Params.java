@@ -8,4 +8,8 @@ public class Params {
 	public static String USER_NAME = "userName";
 	public static String SENT_PKGS = "sentPkgs";
 	public static String RECEIVE_PKGS = "receivePkgs";
+	
+	public static String SHARE_USER = "user";
+	public static String STUDY_ID = "studyId";
+	
 }

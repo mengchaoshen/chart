@@ -1,6 +1,5 @@
 package com.chart.activity;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import android.content.BroadcastReceiver;
@@ -58,10 +57,13 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		@Override
 		public boolean handleMessage(Message msg) {
 			if (msg.what == 1) {
-				chartAdapter = new ChartAdapter(ChartActivity.this,
-						chartItemList);
-				list_chart.setAdapter(chartAdapter);
-				if(progressBarDialog.isShowing()){
+				if(null != chartItemList && chartItemList.size() > 0 ){
+					chartAdapter = new ChartAdapter(ChartActivity.this,
+							chartItemList);
+					list_chart.setAdapter(chartAdapter);
+					list_chart.setSelection(chartItemList.size() - 1);
+				}
+				if (progressBarDialog.isShowing()) {
 					progressBarDialog.dismiss();
 				}
 			}
@@ -78,21 +80,20 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		initReceiver();
 	}
 
-	private void initReceiver(){
-		registerReceiver(new MyReceiver(), 
-		         new IntentFilter(GlobConstant.UPDATE_RECEIVER));
+	private void initReceiver() {
+		registerReceiver(new MyReceiver(), new IntentFilter(
+				GlobConstant.UPDATE_RECEIVER));
 	}
-	
-	class MyReceiver extends BroadcastReceiver{
+
+	class MyReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			LogUtils.e("收到了广播");
 			new Thread(ChartActivity.this).start();
 		}
-		
+
 	}
-	
+
 	@Override
 	public void findViewById() {
 		btn_send = (Button) findViewById(R.id.btn_send);
@@ -127,7 +128,7 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 				ChartItem chartItem = new ChartItem(baseApp.user.getStudyId(),
 						"", edtxt_text.getText().toString(), false, chartType,
 						"");
-				
+
 				sendMessage(JSON.toJSONString(chartItem));
 			}
 			break;
@@ -143,7 +144,7 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 	 * 发消息
 	 */
 	private void sendMessage(String json) {
-		LogUtils.e("发出的：" +json);
+		LogUtils.e("发出的：" + json);
 		RequestParams sendParams = new RequestParams();
 		sendParams.setContentType("UTF-8");
 		sendParams.addQueryStringParameter("json", json);
@@ -151,19 +152,24 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		SendMessageAction sendMessageAction = new SendMessageAction(
 				ChartActivity.this, ActionConstant.SEND_MESSAGE, sendParams);
 		sendMessageAction.setHttpCallback(new HttpCallback() {
-			
+
 			@Override
 			public void onCallback(int state, String result) {
 				switch (state) {
 				case HttpState.SUCCESS:
 					if (baseApp.baseJson.isSuccess()) {
-						Toast.makeText(ChartActivity.this, getResources().getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+						// Toast.makeText(ChartActivity.this,
+						// getResources().getString(R.string.login_success),
+						// Toast.LENGTH_SHORT).show();
 						// 发送成功
 						progressBarDialog.show();
 						new Thread(ChartActivity.this).start();
 					} else {// 发送失败
-						Toast.makeText(ChartActivity.this, getResources().getString(R.string.send_fail), Toast.LENGTH_SHORT).show();
+						Toast.makeText(ChartActivity.this,
+								getResources().getString(R.string.send_fail),
+								Toast.LENGTH_SHORT).show();
 					}
+					edtxt_text.setText(null);
 					break;
 				case HttpState.FAILURE:
 					break;
@@ -191,8 +197,10 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		try {
 			chartItemList = (List<ChartItem>) BaseDao.query(
 					ChartActivity.this,
-					Selector.from(ChartItem.class).where("chartObject", "=",
-							"group1").and("chartType", "=", "0"));
+					Selector.from(ChartItem.class)
+							.where("chartObject", "=", "group1")
+							.and("chartType", "=", "0")
+							.and("studyId", "=", baseApp.user.getStudyId()));
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
