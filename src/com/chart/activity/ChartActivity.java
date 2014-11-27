@@ -6,11 +6,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -108,6 +113,15 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		progressBarDialog = new ProgressBarDialog(ChartActivity.this);
 		btn_send.setOnClickListener(this);
 		btn_face.setOnClickListener(this);
+		edtxt_text.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if(hasFocus){
+					list_chart.setSelection(chartItemList.size() - 1);
+				}
+			}
+		});
 		progressBarDialog.show();
 		new Thread(this).start();
 	}
@@ -130,10 +144,16 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 						"");
 
 				sendMessage(JSON.toJSONString(chartItem));
+				list_chart.setSelection(chartItemList.size() - 1);
 			}
 			break;
 		case R.id.btn_face:// 表情
 
+			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+			ImageSpan is = new ImageSpan(ChartActivity.this, bitmap);
+			SpannableString ss = new SpannableString("/f1");
+			ss.setSpan(is, 0, 3, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+			edtxt_text.append(ss);
 			break;
 		default:
 			break;

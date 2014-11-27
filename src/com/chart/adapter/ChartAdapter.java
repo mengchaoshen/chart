@@ -1,8 +1,15 @@
 package com.chart.adapter;
 
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.chart.R;
+import com.chart.constant.FaceConstant;
 import com.chart.model.ChartItem;
 
 public class ChartAdapter extends BaseAdapter {
@@ -20,10 +28,13 @@ public class ChartAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 
 	private ViewHolder holder;
+	
+	private Context context;
 
 	public ChartAdapter(Context context, List<ChartItem> chartItemList) {
 		inflater = LayoutInflater.from(context);
 		this.chartItemList = chartItemList;
+		this.context= context;
 	}
 
 	@Override
@@ -66,13 +77,14 @@ public class ChartAdapter extends BaseAdapter {
 			holder.btn_otherHead.setVisibility(View.VISIBLE);
 			holder.btn_otherHead.setText(chartItemList.get(position).getHead());
 			holder.btn_myHead.setVisibility(View.GONE);
+			holder.txt_chartText.setGravity(Gravity.LEFT);
 		}else{
 			holder.btn_myHead.setVisibility(View.VISIBLE);
 			holder.btn_myHead.setText(chartItemList.get(position).getHead());
 			holder.btn_otherHead.setVisibility(View.GONE);
+			holder.txt_chartText.setGravity(Gravity.RIGHT);
 		}
-		holder.txt_chartText.setText(chartItemList.get(position).getChartText());
-
+		holder.txt_chartText.setText(toface(chartItemList.get(position).getChartText()));
 		return convertView;
 	}
 
@@ -83,6 +95,32 @@ public class ChartAdapter extends BaseAdapter {
 		Button btn_myHead;
 
 		TextView txt_chartText;
+	}
+	
+	/**
+	 * 将规定字符串转化为表情
+	 * @param text
+	 * @return
+	 */
+	private CharSequence  toface(String text){
+		Map<String, Integer> map = FaceConstant.map;
+		SpannableStringBuilder ssb = new SpannableStringBuilder();
+		for(int i = 0; i<text.length(); i++){
+			if (text.charAt(i) == '/') {
+				String mayFace = "/" + text.charAt(i + 1) + text.charAt(i + 2);
+				if(null != map.get(mayFace)){
+					Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), map.get(mayFace));
+					ImageSpan is = new ImageSpan(context, bitmap);
+					SpannableString ss = new SpannableString(mayFace);
+					ss.setSpan(is, 0, 3, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+					ssb.append(ss);
+					i+=2;
+				}
+			}else{
+				ssb.append(text.charAt(i));
+			}
+		}
+		return ssb;
 	}
 
 }

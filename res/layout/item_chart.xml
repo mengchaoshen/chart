@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
     android:background="@color/background"
     android:orientation="horizontal" >
 
@@ -10,9 +11,13 @@
         android:id="@+id/btn_otherHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="3dp"
-        android:textColor="@color/black"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:background="@drawable/head_background"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:textSize="22sp" />
 
     <TextView
@@ -20,18 +25,27 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:maxWidth="200dp"
         android:layout_marginRight="10dp"
         android:textColor="@color/black"
+        android:layout_marginBottom="5dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:textSize="14sp" />
 
     <Button
         android:id="@+id/btn_myHead"
+        android:background="@drawable/head_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="22sp" 
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:visibility="gone"/>
 
 </LinearLayout>

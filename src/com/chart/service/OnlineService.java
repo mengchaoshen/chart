@@ -84,7 +84,7 @@ public class OnlineService extends Service {
 				LogUtils.e(str);
 				Intent update = new Intent(GlobConstant.UPDATE_RECEIVER);
 				sendBroadcast(update);
-				notifyUser(32,"DDPush自定义推送信息",""+str,"收到自定义推送信息");
+//				notifyUser(32,"DDPush自定义推送信息",""+str,"收到自定义推送信息");
 			}
 			setPkgsInfo();
 		}
