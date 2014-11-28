@@ -14,4 +14,10 @@ public class BaseApplication extends Application implements Serializable{
 	public User user = new User();
 	
 	public BaseJson baseJson = new BaseJson();
+	
+	public String chartTitle = null;
+	
+	public String chartObject = null;
+	
+	public String chartType = null;
 }

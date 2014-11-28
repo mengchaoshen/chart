@@ -86,29 +86,29 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f0a0017;
-        public static final int btn_back=0x7f0a0009;
+        public static final int btn_back=0x7f0a0000;
         public static final int btn_cancel=0x7f0a000e;
-        public static final int btn_face=0x7f0a0003;
+        public static final int btn_face=0x7f0a0005;
         public static final int btn_myHead=0x7f0a0014;
         public static final int btn_otherHead=0x7f0a0012;
-        public static final int btn_send=0x7f0a0002;
-        public static final int btn_submit=0x7f0a0007;
+        public static final int btn_send=0x7f0a0004;
+        public static final int btn_submit=0x7f0a0009;
         public static final int btn_sure=0x7f0a000d;
-        public static final int edtTxt_password=0x7f0a0005;
-        public static final int edtTxt_studyId=0x7f0a0004;
-        public static final int edtxt_text=0x7f0a0001;
-        public static final int gd_function=0x7f0a000b;
+        public static final int edtTxt_password=0x7f0a0007;
+        public static final int edtTxt_studyId=0x7f0a0006;
+        public static final int edtxt_text=0x7f0a0003;
+        public static final int gd_function=0x7f0a000c;
         public static final int img_icon=0x7f0a0015;
         public static final int layout_prb=0x7f0a000f;
-        public static final int layout_top=0x7f0a0008;
-        public static final int list_chart=0x7f0a0000;
+        public static final int layout_top=0x7f0a000a;
+        public static final int list_chart=0x7f0a0002;
         public static final int progressBar=0x7f0a0010;
         public static final int txt_chartText=0x7f0a0013;
         public static final int txt_functionName=0x7f0a0016;
         public static final int txt_progressBar=0x7f0a0011;
-        public static final int txt_title=0x7f0a000c;
-        public static final int txt_userName=0x7f0a000a;
-        public static final int txt_warn=0x7f0a0006;
+        public static final int txt_title=0x7f0a0001;
+        public static final int txt_userName=0x7f0a000b;
+        public static final int txt_warn=0x7f0a0008;
     }
     public static final class layout {
         public static final int activity_chart=0x7f030000;
@@ -136,6 +136,8 @@ public final class R {
         public static final int _warn2=0x7f070007;
         public static final int action_settings=0x7f070001;
         public static final int app_name=0x7f070000;
+        public static final int group_1=0x7f070016;
+        public static final int group_chart=0x7f070015;
         public static final int hello_world=0x7f070002;
         public static final int image=0x7f070012;
         public static final int login_success=0x7f07000d;

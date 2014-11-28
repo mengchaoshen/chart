@@ -245,5 +245,17 @@ public class BaseUtil {
 		}
 		return stringBuilder.toString();
 	}
+	
+	/**
+	 * 获取字符串的最后一个字符
+	 * @param name
+	 * @return
+	 */
+	public static String getHead(String name){
+		char c=name.charAt(name.length()-1);
+		StringBuilder sb = new StringBuilder();
+		sb.append(c);
+		return sb.toString();
+	}
 
 }

@@ -22,5 +22,7 @@
     <string name="image">图片</string>
     <string name="_send">发送</string>
     <string name="_face">表情</string>
+    <string name="group_chart">群聊</string>
+    <string name="group_1">group1</string>
 
 </resources>

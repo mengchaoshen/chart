@@ -5,12 +5,36 @@
     android:background="@color/background"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <Button
+            android:id="@+id/btn_back"
+            style="@style/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_back"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/blue"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/list_chart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:divider="@null"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:divider="@null" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,16 +56,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/_send"
-            android:textSize="14sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
         <Button
             android:id="@+id/btn_face"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="14sp"
             android:text="@string/_face"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
