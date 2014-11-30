@@ -18,6 +18,7 @@ import com.chart.R;
 import com.chart.action.MyFriendsAction;
 import com.chart.adapter.MyFriendsAdapter;
 import com.chart.constant.ActionConstant;
+import com.chart.constant.GlobConstant;
 import com.chart.constant.HttpState;
 import com.chart.interfaces.HttpCallback;
 import com.chart.interfaces.OnDialogClickListener;
@@ -148,7 +149,12 @@ public class MyFriendsActivity extends BaseActivity implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-
+		LogUtils.e(""+position);
+		baseApp.chartTitle = userList.get(position).getUserName();
+		baseApp.chartObject = userList.get(position).getStudyId();
+		baseApp.chartType = GlobConstant.PERSONAL;
+		startActivity(new Intent(MyFriendsActivity.this, ChartActivity.class));
+		finish();
 	}
 
 }

@@ -89,7 +89,6 @@ public final class R {
         public static final int btn_back=0x7f0a0000;
         public static final int btn_cancel=0x7f0a000f;
         public static final int btn_face=0x7f0a0005;
-        public static final int btn_head=0x7f0a0018;
         public static final int btn_myHead=0x7f0a0015;
         public static final int btn_otherHead=0x7f0a0013;
         public static final int btn_send=0x7f0a0004;
@@ -107,6 +106,7 @@ public final class R {
         public static final int progressBar=0x7f0a0011;
         public static final int txt_chartText=0x7f0a0014;
         public static final int txt_functionName=0x7f0a0017;
+        public static final int txt_head=0x7f0a0018;
         public static final int txt_name=0x7f0a0019;
         public static final int txt_progressBar=0x7f0a0012;
         public static final int txt_studyId=0x7f0a001a;

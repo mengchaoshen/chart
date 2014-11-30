@@ -24,7 +24,7 @@ public class LoginAction extends BaseAction {
 	public void paramParse(String jsonResult) {
 		LogUtils.e(jsonResult);
 		User user = JSON.parseObject(jsonResult, User.class);
-		if(null != user && user.isSuccess()){
+		if(null != user && user.isSuccess() && user.isCorrect()){
 			((BaseApplication) context.getApplicationContext()).user = user;
 			((BaseApplication) context.getApplicationContext()).chartTitle = context.getResources().getString(R.string.group_chart);
 			((BaseApplication) context.getApplicationContext()).chartObject = context.getResources().getString(R.string.group_1);
