@@ -1,6 +1,8 @@
 package com.chart;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Application;
 
@@ -20,4 +22,6 @@ public class BaseApplication extends Application implements Serializable{
 	public String chartObject = null;
 	
 	public String chartType = null;
+	
+	public List<User> userList = new ArrayList<User>();
 }

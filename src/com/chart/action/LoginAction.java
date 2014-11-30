@@ -29,6 +29,7 @@ public class LoginAction extends BaseAction {
 			((BaseApplication) context.getApplicationContext()).chartTitle = context.getResources().getString(R.string.group_chart);
 			((BaseApplication) context.getApplicationContext()).chartObject = context.getResources().getString(R.string.group_1);
 			((BaseApplication) context.getApplicationContext()).chartType = GlobConstant.GROPU;
+			LogUtils.e(((BaseApplication) context.getApplicationContext()).user.getStudyId());
 		}
 		
 	}

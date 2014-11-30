@@ -95,7 +95,7 @@ public class ChartAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View arg0) {
 				((BaseApplication) context.getApplicationContext()).chartTitle = chartItemList.get(position).getHead();
-				((BaseApplication) context.getApplicationContext()).chartObject = chartItemList.get(position).getChartObject();
+				((BaseApplication) context.getApplicationContext()).chartObject = chartItemList.get(position).getSendStudyId();
 				((BaseApplication) context.getApplicationContext()).chartType = GlobConstant.PERSONAL;
 				
 				Intent changeToPersonal = new Intent(GlobConstant.CHANGE_TO_PERSONAL);

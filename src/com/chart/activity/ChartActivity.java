@@ -70,10 +70,10 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		@Override
 		public boolean handleMessage(Message msg) {
 			if (msg.what == 1) {
+				chartAdapter = new ChartAdapter(ChartActivity.this,
+						chartItemList);
+				list_chart.setAdapter(chartAdapter);
 				if(null != chartItemList && chartItemList.size() > 0 ){
-					chartAdapter = new ChartAdapter(ChartActivity.this,
-							chartItemList);
-					list_chart.setAdapter(chartAdapter);
 					list_chart.setSelection(chartItemList.size() - 1);
 				}
 				if (progressBarDialog.isShowing()) {
@@ -126,6 +126,7 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 			chartType = GlobConstant.PERSONAL;
 			chartObject = baseApp.chartObject;
 			txt_title.setText(baseApp.chartTitle);
+			new Thread(ChartActivity.this).run();
 		}
 		
 	}
@@ -254,12 +255,21 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 		Message msg = new Message();
 
 		try {
-			chartItemList = (List<ChartItem>) BaseDao.query(
-					ChartActivity.this,
-					Selector.from(ChartItem.class)
-							.where("chartObject", "=", chartObject)
-							.and("chartType", "=", chartType)
-							.and("studyId", "=", baseApp.user.getStudyId()));
+			if(chartType.equals(GlobConstant.PERSONAL)){
+				chartItemList = ((List<ChartItem>) BaseDao.query(
+						ChartActivity.this,
+						Selector.from(ChartItem.class)
+						.where("sendStudyId", "=", chartObject).or("chartObject", "=", chartObject)
+						.and("chartType", "=", chartType)
+						.and("studyId", "=", baseApp.user.getStudyId())));
+			}else{
+				chartItemList = (List<ChartItem>) BaseDao.query(
+						ChartActivity.this,
+						Selector.from(ChartItem.class)
+								.where("chartObject", "=", chartObject)
+								.and("chartType", "=", chartType)
+								.and("studyId", "=", baseApp.user.getStudyId()));
+			}
 		} catch (DbException e) {
 			e.printStackTrace();
 		}

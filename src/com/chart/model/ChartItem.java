@@ -20,6 +20,9 @@ public class ChartItem implements Serializable{
 	@Column(column="head")
 	private String head;
 	
+	@Column(column="sendStudyId")
+	private String sendStudyId;
+	
 	@Column(column="chartText")
 	private String chartText;
 
@@ -106,6 +109,14 @@ public class ChartItem implements Serializable{
 
 	public void setChartType(String chartType) {
 		this.chartType = chartType;
+	}
+
+	public String getSendStudyId() {
+		return sendStudyId;
+	}
+
+	public void setSendStudyId(String sendStudyId) {
+		this.sendStudyId = sendStudyId;
 	}
 	
 }

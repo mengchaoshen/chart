@@ -17,11 +17,13 @@ import android.widget.TextView;
 import com.chart.BaseActivity;
 import com.chart.R;
 import com.chart.adapter.MainFunctionAdapter;
+import com.chart.constant.GlobConstant;
 import com.chart.constant.MainFunctionConstant;
 import com.chart.interfaces.OnDialogClickListener;
 import com.chart.model.MainFunction;
 import com.chart.widget.IsSureDialog;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.util.LogUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
@@ -96,23 +98,24 @@ public class MainFunctionActivity extends BaseActivity implements
 		case 1:// 群聊
 			startActivity(new Intent(MainFunctionActivity.this, ChartActivity.class));
 			finish();
+			baseApp.chartTitle = getResources().getString(R.string.group_chart);
+			baseApp.chartObject = getResources().getString(R.string.group_1);
+			baseApp.chartType = GlobConstant.GROPU;
 			break;
-		case 2:// 纳税清单申请
+		case 2:// 私聊
 			break;
-		case 3:// 我的纳税清单
-			toMyTaxList();
+		case 3:// 我的好友
+			LogUtils.e("studyId:"+baseApp.user.getStudyId());
+			startActivity(new Intent(MainFunctionActivity.this, MyFriendsActivity.class));
 			break;
-		case 4:// 清单在线校验
+		case 4:// 
+			break;
+		case 5:// 清单在线校验
 			break;
 		default:
 			break;
 		}
 	}
-
-	/**
-	 * 我的纳税清单
-	 */
-	private void toMyTaxList() {}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
