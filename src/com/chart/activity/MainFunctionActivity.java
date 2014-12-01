@@ -105,12 +105,14 @@ public class MainFunctionActivity extends BaseActivity implements
 		case 2:// 私聊
 			break;
 		case 3:// 我的好友
-			LogUtils.e("studyId:"+baseApp.user.getStudyId());
 			startActivity(new Intent(MainFunctionActivity.this, MyFriendsActivity.class));
+			finish();
 			break;
-		case 4:// 
+		case 4://群公告
 			break;
-		case 5:// 清单在线校验
+		case 5:// 上传公告
+			startActivity(new Intent(MainFunctionActivity.this, UploadActivity.class));
+			finish();
 			break;
 		default:
 			break;

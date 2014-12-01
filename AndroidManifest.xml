@@ -63,6 +63,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
+        <activity
+            android:name="com.chart.activity.UploadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
 
         <service android:name="com.chart.service.OnlineService" >
         </service>
