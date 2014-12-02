@@ -12,4 +12,6 @@ public class ActionConstant {
 	
 	public final static String MY_FRIENDS = COMM_URL + "/myFriendsServlet";
 	
+	public final static String UPLOAD_AN = COMM_URL + "/announcementsServlet";
+	
 }

@@ -24,4 +24,6 @@ public class BaseApplication extends Application implements Serializable{
 	public String chartType = null;
 	
 	public List<User> userList = new ArrayList<User>();
+	
+	public boolean uploadSuccess;
 }

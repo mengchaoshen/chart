@@ -51,7 +51,8 @@ public class BitmapUtil {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		bm.compress(Bitmap.CompressFormat.JPEG, 40, baos);
 		byte[] b = baos.toByteArray();
-		return Base64.encodeToString(b, Base64.DEFAULT);
+//		return Base64.encodeToString(b, Base64.DEFAULT);
+		return Base64Coder.encodeLines(b);
 	}
 
 	public static void saveMyBitmap(String path, String bitName, Bitmap mBitmap) {

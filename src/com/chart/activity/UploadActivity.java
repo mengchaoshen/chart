@@ -1,12 +1,9 @@
 package com.chart.activity;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,11 +14,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.chart.BaseActivity;
 import com.chart.R;
+import com.chart.action.UploadAction;
+import com.chart.constant.ActionConstant;
 import com.chart.constant.GlobConstant;
+import com.chart.constant.HttpState;
+import com.chart.interfaces.HttpCallback;
+import com.chart.interfaces.OnDialogClickListener;
 import com.chart.util.BitmapUtil;
+import com.chart.widget.IsSureDialog;
+import com.chart.widget.ProgressBarDialog;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.util.LogUtils;
 
 public class UploadActivity extends BaseActivity implements OnClickListener {
 
@@ -38,6 +45,10 @@ public class UploadActivity extends BaseActivity implements OnClickListener {
 	private Button btn_upload;
 	
 	private String photoName;
+	
+	private String photo;
+	
+	private ProgressBarDialog progressBarDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +74,7 @@ public class UploadActivity extends BaseActivity implements OnClickListener {
 		btn_upload.setOnClickListener(this);
 		layout_openCamear.setOnClickListener(this);
 		layout_fromAlbums.setOnClickListener(this);
+		progressBarDialog = new ProgressBarDialog(UploadActivity.this);
 	}
 
 	@Override
@@ -79,7 +91,7 @@ public class UploadActivity extends BaseActivity implements OnClickListener {
 			backToActivity();
 			break;
 		case R.id.btn_upload:
-
+			upload();
 			break;
 		case R.id.layout_openCamear:
 			takePhoto();
@@ -92,6 +104,57 @@ public class UploadActivity extends BaseActivity implements OnClickListener {
 		}
 	}
 
+	private void upload(){
+		progressBarDialog.show();
+		RequestParams requestParams = new RequestParams();
+		
+		requestParams.addBodyParameter("studyId", baseApp.user.getStudyId());
+		requestParams.addBodyParameter("photo", photo);
+		requestParams.addBodyParameter("description", edtxt_description.getText().toString());
+		requestParams.addBodyParameter("sendName", baseApp.user.getUserName());
+		
+		LogUtils.e(baseApp.user.getStudyId());
+		LogUtils.e(photo);
+		LogUtils.e(edtxt_description.getText().toString());
+		LogUtils.e(baseApp.user.getUserName());
+		UploadAction uploadAction = new UploadAction(UploadActivity.this, ActionConstant.UPLOAD_AN, requestParams);
+		uploadAction.setHttpCallback(new HttpCallback() {
+			
+			@Override
+			public void onCallback(int state, String result) {
+
+				switch (state) {
+				case HttpState.SUCCESS:
+					progressBarDialog.dismiss();
+					Toast.makeText(
+							UploadActivity.this,
+							"上传成功",
+							Toast.LENGTH_SHORT).show();
+					break;
+				case HttpState.FAILURE:
+					progressBarDialog.dismiss();
+					Toast.makeText(
+							UploadActivity.this,
+							"上传失败",
+							Toast.LENGTH_SHORT).show();
+					break;
+				case HttpState.NETWORK_AVAILABLE:
+					progressBarDialog.dismiss();
+					Toast.makeText(
+							UploadActivity.this,
+							getResources().getString(
+									R.string.warn_network_not_available),
+							Toast.LENGTH_SHORT).show();
+					break;
+				default:
+					break;
+				}
+			
+			}
+		});
+		uploadAction.sendPost();
+	}
+	
 	private void takePhoto() {
 		File d  = new File(GlobConstant.PACKAGE_NAME); 
 		if(!d.exists()){
@@ -120,6 +183,7 @@ public class UploadActivity extends BaseActivity implements OnClickListener {
 		}
 		// Bitmap bitmap =null;
 		// ContentResolver resolver = getContentResolver();
+		String path = null;
 		if (GlobConstant.FROM_ALBUMS == requestCode) {
 			Uri uri = data.getData();
 			// bitmap = MediaStore.Images.Media.getBitmap(resolver, uri);
@@ -128,11 +192,13 @@ public class UploadActivity extends BaseActivity implements OnClickListener {
 			int index = cursor
 					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
 			cursor.moveToFirst();
-			String path = cursor.getString(index);
+			path = cursor.getString(index);
 			img_up.setImageBitmap(BitmapUtil.getSmallBitmap(path));
 		} else if (GlobConstant.TAKE_PHOTO == requestCode) {
+			path = GlobConstant.PACKAGE_NAME+"/"+photoName;
 			img_up.setImageBitmap(BitmapUtil.getSmallBitmap(GlobConstant.PACKAGE_NAME+"/"+photoName));
 		}
+		photo = BitmapUtil.bitmapToString(path);
 	}
 
 	@Override
