@@ -14,4 +14,6 @@ public class ActionConstant {
 	
 	public final static String UPLOAD_AN = COMM_URL + "/announcementsServlet";
 	
+	public final static String DOWNLOAD_AN = COMM_URL + "/groupAnnServlet";
+	
 }

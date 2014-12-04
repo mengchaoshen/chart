@@ -29,5 +29,7 @@
     <string name="from_albums">从相册中选择</string>
     <string name="_upload">上传</string>
     <string name="upload_announcement">上传公告</string>
+    <string name="group_announcement">群公告</string>
+    <string name="_from">来自：</string>
 
 </resources>

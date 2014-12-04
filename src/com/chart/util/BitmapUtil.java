@@ -13,6 +13,24 @@ import android.util.Base64;
 
 public class BitmapUtil {
 
+	/**
+	 * string转成bitmap
+	 * 
+	 * @param st
+	 */
+	public static Bitmap convertStringToIcon(String st) {
+		Bitmap bitmap = null;
+		try {
+			byte[] bitmapArray;
+			bitmapArray = Base64.decode(st, Base64.DEFAULT);
+			bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0,
+					bitmapArray.length);
+			return bitmap;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	// 计算图片的缩放值
 	public static int calculateInSampleSize(BitmapFactory.Options options,
 			int reqWidth, int reqHeight) {
@@ -51,16 +69,16 @@ public class BitmapUtil {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		bm.compress(Bitmap.CompressFormat.JPEG, 40, baos);
 		byte[] b = baos.toByteArray();
-//		return Base64.encodeToString(b, Base64.DEFAULT);
+		// return Base64.encodeToString(b, Base64.DEFAULT);
 		return Base64Coder.encodeLines(b);
 	}
 
 	public static void saveMyBitmap(String path, String bitName, Bitmap mBitmap) {
 		File p = new File(path);
-		if(!p.exists()){
+		if (!p.exists()) {
 			p.mkdirs();
 		}
-		
+
 		File f = new File(path + "/" + bitName);
 		try {
 			f.createNewFile();

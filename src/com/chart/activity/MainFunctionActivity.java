@@ -109,6 +109,8 @@ public class MainFunctionActivity extends BaseActivity implements
 			finish();
 			break;
 		case 4://群公告
+			startActivity(new Intent(MainFunctionActivity.this, AnnActivity.class));
+			finish();
 			break;
 		case 5:// 上传公告
 			startActivity(new Intent(MainFunctionActivity.this, UploadActivity.class));
