@@ -14,7 +14,7 @@ public class AnnAction extends BaseAction {
 	
 	public AnnAction(Context context, String url, RequestParams params) {
 		super(context, url, params);
-		this.context = context;
+		this.context = context;//ddd
 	}
 
 	@Override
