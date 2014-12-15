@@ -6,7 +6,6 @@ import java.util.List;
 
 import android.app.Application;
 
-import com.chart.model.AnnJson;
 import com.chart.model.Announcement;
 import com.chart.model.BaseJson;
 import com.chart.model.User;
@@ -30,4 +29,8 @@ public class BaseApplication extends Application implements Serializable{
 	public boolean uploadSuccess;
 	
 	public List<Announcement> annList = new ArrayList<Announcement>();
+	
+	public int url;
+	
+	public String spTxt;
 }

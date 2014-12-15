@@ -33,7 +33,9 @@ import com.chart.constant.GlobConstant;
 import com.chart.constant.HttpState;
 import com.chart.dao.BaseDao;
 import com.chart.interfaces.HttpCallback;
+import com.chart.interfaces.OnDialogClickListener;
 import com.chart.model.ChartItem;
+import com.chart.widget.FaceDialog;
 import com.chart.widget.ProgressBarDialog;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
@@ -64,6 +66,8 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 	private String chartType;
 	
 	private String chartObject;
+	
+	private FaceDialog faceDialog;
 
 	private Handler handler = new Handler(new Handler.Callback() {
 
@@ -188,12 +192,22 @@ public class ChartActivity extends BaseActivity implements OnClickListener,
 			}
 			break;
 		case R.id.btn_face:// 表情
-
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-			ImageSpan is = new ImageSpan(ChartActivity.this, bitmap);
-			SpannableString ss = new SpannableString("/f1");
-			ss.setSpan(is, 0, 3, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-			edtxt_text.append(ss);
+			faceDialog = new FaceDialog(ChartActivity.this);
+			faceDialog.setOnDialogClickListener(new OnDialogClickListener() {
+				
+				@Override
+				public void onDialogClick(int viewId, Object item) {
+					Bitmap bitmap = BitmapFactory.decodeResource(getResources(), baseApp.url);
+					ImageSpan is = new ImageSpan(ChartActivity.this, bitmap);
+					SpannableString ss = new SpannableString(baseApp.spTxt);
+					ss.setSpan(is, 0, 4, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+					edtxt_text.append(ss);
+					
+				}
+			});
+			faceDialog.show();
+			
+			
 			break;
 		case R.id.btn_back:
 			backToActivity();

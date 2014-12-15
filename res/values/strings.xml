@@ -31,5 +31,7 @@
     <string name="upload_announcement">上传公告</string>
     <string name="group_announcement">群公告</string>
     <string name="_from">来自：</string>
+    <string name="hello_label">你好，</string>
+    <string name="re_login">确定要退出，重新登录吗？</string>
 
 </resources>

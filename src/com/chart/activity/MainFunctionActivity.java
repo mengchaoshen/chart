@@ -74,7 +74,7 @@ public class MainFunctionActivity extends BaseActivity implements
 
 	@Override
 	public void init() {
-		txt_userName.setText("你好，" + baseApp.user.getUserName());
+		txt_userName.setText(getResources().getString(R.string.hello_label) + baseApp.user.getUserName());
 		mainFunctionList = MainFunctionConstant.getMainFunctionList();
 		adapter = new MainFunctionAdapter(MainFunctionActivity.this,
 				mainFunctionList);
@@ -85,7 +85,7 @@ public class MainFunctionActivity extends BaseActivity implements
 	@Override
 	public void backToActivity() {
 		isSureDialog = new IsSureDialog(MainFunctionActivity.this,
-				"确定要退出，重新登录吗？");
+				getResources().getString(R.string.re_login));
 		dialogType = DialogType.exit;
 		isSureDialog.setOnDialogClickListener(this);
 		isSureDialog.show();
@@ -95,7 +95,7 @@ public class MainFunctionActivity extends BaseActivity implements
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		switch (((MainFunction) parent.getItemAtPosition(position)).getId()) {
-		case 1:// 群聊
+		case 1:// qunliao
 			startActivity(new Intent(MainFunctionActivity.this, ChartActivity.class));
 			finish();
 			baseApp.chartTitle = getResources().getString(R.string.group_chart);
@@ -104,15 +104,15 @@ public class MainFunctionActivity extends BaseActivity implements
 			break;
 		case 2:// 私聊
 			break;
-		case 3:// 我的好友
+		case 3:// wo de hao you
 			startActivity(new Intent(MainFunctionActivity.this, MyFriendsActivity.class));
 			finish();
 			break;
-		case 4://群公告
+		case 4://qun gong gao
 			startActivity(new Intent(MainFunctionActivity.this, AnnActivity.class));
 			finish();
 			break;
-		case 5:// 上传公告
+		case 5:// shang chuan gong gao
 			startActivity(new Intent(MainFunctionActivity.this, UploadActivity.class));
 			finish();
 			break;

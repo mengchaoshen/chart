@@ -24,6 +24,7 @@ import com.chart.R;
 import com.chart.constant.FaceConstant;
 import com.chart.constant.GlobConstant;
 import com.chart.model.ChartItem;
+import com.chart.model.Face;
 import com.chart.util.BaseUtil;
 
 public class ChartAdapter extends BaseAdapter {
@@ -120,18 +121,18 @@ public class ChartAdapter extends BaseAdapter {
 	 * @return
 	 */
 	private CharSequence  toface(String text){
-		Map<String, Integer> map = FaceConstant.map;
+		Map<String, Face> map = FaceConstant.map;
 		SpannableStringBuilder ssb = new SpannableStringBuilder();
 		for(int i = 0; i<text.length(); i++){
 			if (text.charAt(i) == '/') {
-				String mayFace = "/" + text.charAt(i + 1) + text.charAt(i + 2);
+				String mayFace = "/" + text.charAt(i + 1) + text.charAt(i + 2) + text.charAt(i + 3);
 				if(null != map.get(mayFace)){
-					Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), map.get(mayFace));
+					Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), map.get(mayFace).getUrl());
 					ImageSpan is = new ImageSpan(context, bitmap);
 					SpannableString ss = new SpannableString(mayFace);
-					ss.setSpan(is, 0, 3, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+					ss.setSpan(is, 0, 4, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 					ssb.append(ss);
-					i+=2;
+					i+=3;
 				}
 			}else{
 				ssb.append(text.charAt(i));
