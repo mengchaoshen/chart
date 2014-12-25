@@ -27,6 +27,8 @@ public class AnnActivity extends BaseActivity implements OnClickListener{
 	
 	private ListView ltv_ann;
 	
+	private Button btn_upload;
+	
 	private ProgressBarDialog progressBarDialog;
 	
 	private IsSureDialog isSureDialog;
@@ -49,6 +51,7 @@ public class AnnActivity extends BaseActivity implements OnClickListener{
 	@Override
 	public void findViewById() {
 		btn_back = (Button) findViewById(R.id.btn_back);
+		btn_upload = (Button) findViewById(R.id.btn_upload);
 		ltv_ann = (ListView) findViewById(R.id.ltv_ann);
 	}
 
@@ -56,6 +59,7 @@ public class AnnActivity extends BaseActivity implements OnClickListener{
 	public void init() {
 		progressBarDialog = new ProgressBarDialog(AnnActivity.this);
 		btn_back.setOnClickListener(this);
+		btn_upload.setOnClickListener(this);
 		getAnn();
 	}
 	
@@ -123,7 +127,18 @@ public class AnnActivity extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		backToActivity();
+		switch (v.getId()) {
+		case R.id.btn_back:
+			backToActivity();
+			break;
+		case R.id.btn_upload:
+			startActivity(new Intent(AnnActivity.this, UploadActivity.class));
+			finish();
+			break;
+		default:
+			break;
+		}
+		
 	}
 	
 	@Override
